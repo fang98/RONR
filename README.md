@@ -1,4 +1,4 @@
-# NNESF
+# RONR
 Implementation of [Role-based One-hop Neighborhood Representation for Link Sign Prediction in Signed Directed Networks](https://ieeexplore.ieee.org/document/11003856).
 
 
