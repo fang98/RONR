@@ -368,7 +368,7 @@ if __name__=='__main__':
                     
                     
                 total_loss = np.array(total_loss)
-                avg_loss = np.sum(total_loss, 0) / n_samples #所有样本的平均loss和acc
+                avg_loss = np.sum(total_loss, 0) / n_samples
                 
                 if (epoch + 1) % upd == 0:
                     print(epoch+1, avg_loss)
