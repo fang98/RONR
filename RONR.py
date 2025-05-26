@@ -178,7 +178,7 @@ class sub_sumgnn(torch.nn.Module):
             self.lin_concat.append(nn.Linear(4*hid_dim,hid_dim))
         
         self.lin_sign = nn.Sequential(
-            nn.Linear(4*hid_dim,hid_dim),
+            nn.Linear(2*n_layers*hid_dim,hid_dim),
             nn.ReLU(),#ReLU Tanh
             nn.Linear(hid_dim,hid_dim),
             nn.ReLU(),
@@ -186,7 +186,7 @@ class sub_sumgnn(torch.nn.Module):
             nn.ReLU(),
             nn.Linear(hid_dim2,2))
         self.lin_direct = nn.Sequential(
-            nn.Linear(4*hid_dim,hid_dim),
+            nn.Linear(2*n_layers*hid_dim,hid_dim),
             nn.ReLU(),#ReLU tanh
             nn.Linear(hid_dim,2))
         
@@ -252,7 +252,6 @@ if __name__=='__main__':
     pool = None
     edgepath = ['soc-sign-bitcoinalpha.csv','soc-sign-bitcoinotc.csv','wiki-RfA.txt',
                 'soc-sign-Slashdot090221.txt','soc-sign-epinions.txt']
-    edgepath = ['soc-sign-bitcoinalpha.csv','soc-sign-bitcoinotc.csv']
     
     n = 5
     seed = [i for i in range(1,n+1)]
@@ -368,7 +367,7 @@ if __name__=='__main__':
                     
                     
                 total_loss = np.array(total_loss)
-                avg_loss = np.sum(total_loss, 0) / n_samples
+                avg_loss = np.sum(total_loss, 0) / n_samples #所有样本的平均loss和acc
                 
                 if (epoch + 1) % upd == 0:
                     print(epoch+1, avg_loss)
